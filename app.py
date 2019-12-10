@@ -12,3 +12,12 @@ def index():
 def anime():
     """Return homepage."""
     return render_template('anime.html')
+
+
+@app.route('/AboutAnime')
+def AboutAnime():
+    """Return homepage."""
+    return render_template('AboutAnime.html')
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
