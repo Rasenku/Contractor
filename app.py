@@ -6,3 +6,9 @@ app = Flask(__name__)
 def index():
     """Return homepage."""
     return render_template('index.html')
+
+
+@app.route('/anime')
+def anime():
+    """Return homepage."""
+    return render_template('anime.html')
