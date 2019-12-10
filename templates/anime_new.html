@@ -1,0 +1,16 @@
+<!--anime_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="nav_container">
+    <button class='header_btn' onclick="location.href='/';">Back</button>
+    <div id="logo" onclick="location.href='/';">Anime Things</div>
+</div>
+
+<div class='anime_form'>
+    <form method='POST' action='/anime'>
+        {% include 'partials/plants_form.html' %}
+        <button type='submit' class='plant_btn' style="margin-left: 0px;">Save Plant Listing</button>
+    </form>
+</div>
+{% endblock %}
