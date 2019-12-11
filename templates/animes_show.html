@@ -67,8 +67,24 @@
     <div class="w3-quarter">
       <img src="http://thehypedgeek.com/wp-content/uploads/2015/10/Bokunoheroacademia.jpg" alt="Curry Udon" width="300" height="300" class="center">
       <h3>My Hero Academia</h3>
+      <!-- animes_show.html -->
+      <!-- anime navbar -->
+      <div class="nav_container">
+          <button class='header_btn' onclick="location.href='/';">Back</button>
+          <div id="logo" onclick="location.href='/';">Anime Things</div>
+          <button class='header_btn' onclick="location.href='/plants/{{ anime._id }}/edit';">Edit Listing</button>
+          <button type='submit' form='delete_form' class='header_btn'>Delete Listing</button>
+      </div>
 
+      <div class='anime_container'>
+          <h1 class='anime_name'>{{ anime.name }}</h1>
+          <img class='anime_img' src="{{ anime.image }}" alt="{{ anime.name }}"><br>
+          <p class='anime_desc'>{{ anime.description }}</p>
+      </div>
 
+      <form method='POST' id='delete_form' action='/animes/{{anime._id}}/delete'>
+          <input type='hidden' name='_method' value='DELETE'>
+      </form>
 </div>
 </body>
 </html>
