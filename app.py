@@ -13,26 +13,60 @@ client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
 
-anime = db.anime
+animes = db.animes
 
 
 @app.route('/')
 def index():
     """Homepage for what you want to search."""
-    return render_template('index.html', anime=anime.find())
+    return render_template('index.html', animes=animes.find())
 
 
 @app.route('/anime/<anime_id>')
-def anime_show(anime_id):
+def animes_show(anime_id):
     """Return homepage."""
-    AnimeArt = anime.find_one({'_id': ObjectId(AnimeArt_id)})
-    return render_template('anime_show.html', anime=anime)
+    anime = animes.find_one({'_id': ObjectId(anime_id)})
+    return render_template('animes_show.html', anime=anime)
 
 
-@app.route('/anime/new')
-def anime_new():
+@app.route('/animes/new')
+def animes_new():
     '''This is for a listing'''
-    return render_template('anime_new.html',anime={}, title='Add a Anime Art')
+    return render_template('animes_new.html',anime={}, title='Add a Anime Art')
+
+@app.route('/animes', methods=['POST'])
+def animes_submit():
+    ''' add new anime to the database and redirect to that anime's page '''
+    anime = {
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'image': request.form.get('image')
+    }
+    anime_id = animes.insert_one(anime).inserted_id
+    return redirect(url_for('animes_show', anime_id=anime_id))
+
+
+@app.route('/animes/<anime_id>/edit')
+def anime_edit(anime_id):
+    ''' form to edit a plant's listing '''
+    anime = animes.find_one({'_id': ObjectId(plant_id)})
+    return render_template('animes_edit.html', anime=anime, title='Edit Listing')
+
+@app.route('/animes/<anime_id>', methods=['POST'])
+def animes_update(anime_id):
+    ''' add updated info of an anime to the database and redirect to that animes page '''
+    updated_anime = {
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+        'image': request.form.get('image')
+    }
+    animes.update_one(
+        {'_id': ObjectId(anime_id)},
+        {'$set': anime_plant})
+    return redirect(url_for('animes_show', anime_id=anime_id))
+
+
+
 
 
 
