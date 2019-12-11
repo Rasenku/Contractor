@@ -17,12 +17,18 @@ animes = db.animes
 
 
 @app.route('/')
-def index():
+def animes_ndex():
     """Homepage for what you want to search."""
-    return render_template('index.html', animes=animes.find())
+    return render_template('animes_index.html', animes=animes.find())
 
 
-@app.route('/anime/<anime_id>')
+@app.route('/anime')
+def anime():
+    """Return homepage."""
+    return render_template('animes_new.html')
+
+
+@app.route('/animes/<anime_id>')
 def animes_show(anime_id):
     """Return homepage."""
     anime = animes.find_one({'_id': ObjectId(anime_id)})
@@ -76,4 +82,4 @@ def AboutAnime():
     return render_template('AboutAnime.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
