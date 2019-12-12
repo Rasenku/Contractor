@@ -21,9 +21,7 @@ def animes_ndex():
     """Homepage for what you want to search."""
     return render_template('animes_index.html', animes=animes.find())
 
-@app.route('/newAnime')
-def newAnime():
-    return render_template('animes_show.html')
+
 
 
 @app.route('/animes/<anime_id>')

@@ -68,11 +68,12 @@
       <div class="nav_container">
           <button class='header_btn' onclick="location.href='/';">Back</button>
           <div id="logo" onclick="location.href='/';">Anime Things</div>
-          <button class='header_btn' onclick="location.href='/animes/{{animes_id}}/edit';">Edit Listing</button>
+          <button class='header_btn' onclick="location.href='/animes/{{ anime._id }}/edit';">Edit Listing</button>
           <button type='submit' form='delete_form' class='header_btn'>Delete Listing</button>
       </div>
 
       <div class='anime_container'>
+        <h1 class='anime_name'>{{ anime.name }}</h1>
           <img class='anime_img' src="{{ anime.image }}" alt="{{ anime.name }}"><br>
           <p class='anime_desc'>{{anime.description}}</p>
       </div>
