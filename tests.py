@@ -41,7 +41,7 @@ class AnimeArtTests(TestCase):
         result = self.client.get('/animes/new')
         self.assertEqual(result.status, '200 OK')
 
-    @mock.patch('pymongo.collection.Collection.find_one')
+    @mock.patch('pymongo.fromcollection.Collection.find_one')
     def test_show_animes(self, mock_find):
         """Test showing a single playlist."""
         mock_find.return_value = sample_AnimeArt
