@@ -66,17 +66,17 @@ def animes_update(anime_id):
     }
     animes.update_one(
         {'_id': ObjectId(anime_id)},
-        {'$set': anime_plant})
+        {'$set': updated_anime})
     return redirect(url_for('animes_show', anime_id=anime_id))
 
 
 
 
-@app.route('/anime/<anime_id>/delete', methods=['POST'])
+@app.route('/animes/<anime_id>/delete', methods=['POST'])
 def animes_delete(anime_id):
     ''' delete a anime art from the database, redirect to the home page '''
     animes.delete_one({'_id': ObjectId(anime_id)})
-    return redirect(url_for('animes_index'))
+    return redirect(url_for('animes_show', anime_id=anime_id))
 
 @app.route('/AboutAnime')
 def AboutAnime():
