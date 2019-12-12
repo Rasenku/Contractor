@@ -41,7 +41,7 @@ def animes_new():
 @app.route('/animes', methods=['POST'])
 def animes_submit():
     ''' add new anime art to the database and redirect to that anime's page '''
-    anime = {
+    anime =  {
         'name': request.form.get('name'),
         'description': request.form.get('description'),
         'image': request.form.get('image')
